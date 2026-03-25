@@ -1,18 +1,19 @@
-from gpiozero import LED
-from time import sleep
+from gpiozero import LED            #gpiozero 라는 라이브러리에서 led 클래스를 
+from time import sleep              #time 이라는 라이브러리에서 sleep함수를 가져옴
 
 
-carLedRed = 2
-carLedYellow = 3
+carLedRed = 2                       #여러 LED핀 번호를 변수로 정의
+carLedYellow = 3                    #carLedRed, carLedYellow, carLedGreen, humanLedRed, humanLedGreen 변수에 핀 번호를 할당해줌
 carLedGreen = 4
 humanLedRed = 20
 humanLedGreen = 21
 
 try:
-    while 1:
+    while 1:                         #while문을 이용해 아래 동작을 무한반복
         carLedRed.value = 0
-        carLedYellow.value = 0
-        carLedGreen.value = 1
+        carLedYellow.value = 0       #value 속성을 사용하여 1(켜짐) 또는 0(꺼짐) 값을 설정해줌
+        carLedGreen.value = 1        #LED를 제어하는 값에 따라 차량 및 보행자 신호등의 상태가 변경됨
+                                     #sleep 함수를 사용하여 LED상태가 변경된 후 대기시간 설정
 
         humanLedRed.value = 1
         humanLedGreen.value = 0
@@ -37,9 +38,9 @@ try:
 except KeyboardInterrupt:
     pass
 
-        carLedRed.value = 0
-        carLedYellow.value = 0
-        carLedGreen.value = 0
+carLedRed.value = 0                  #사용자가 Ctrl + C를 누를 때까지 코드를 실행하는 예외 처리 블록
+carLedYellow.value = 0               #사용자가 Ctrl + C를 누르면 루프중단 코드실행 종료
+carLedGreen.value = 0
 
-        humanLedRed.value = 0
-        humanLedGreen.value = 0 
+humanLedRed.value = 0
+humanLedGreen.value = 0 
