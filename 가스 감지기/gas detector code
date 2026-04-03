@@ -1,0 +1,19 @@
+from gpiozero import DigitalInputDevice   #'gpiozero' 라이브러리에서 'DigitalInputDevice' 클래스 import
+from gpiozero import OutputDevice         # ＇gpiozero＇ 라이브러리에서 ＇OutputDevice＇ 클래스 import
+import time   # ＇time＇ 라이브러리 import
+
+bz = OutputDevice(18)                     # GPIO 18번핀을 부저 제어 핀으로 설정
+gas = DigitalInputDevice(17)              # GPIO 17번 핀을 MQ2 센서 입력 핀으로 설정
+
+try:                        
+    while True:                           # 무한루프 시작 (Lines 8 ~ 18)
+        if gas.value == 0:                # DO 핀이 LOW(0)이면 가스를 감지
+            print("gas")                  # 터미널에＂gas＂ 출력
+            bz.on()                       # 부저 ON
+        else:                             # DO 핀이 HIGH(1)이면 정상 상태
+            print("no gas")               # 터미널에＂no gas＂ 출력
+            bz.off()                      # 부저 OFF
+        time.sleep(0.5)                   # 0.2초마다 센서 값을 반복 확인
+except KeyboardInterrupt:                 # 키보드 인터럽트(Ctrl+C) 발생 시 루프 종료
+    pass
+bz.off()                                  # 프로그램 종료 시 부저를 반드시 OFF 처리
