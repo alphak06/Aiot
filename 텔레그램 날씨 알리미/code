@@ -1,7 +1,7 @@
 importurllib.request                           # 웹 요청
 importjson                                     # JSON 데이터 처리
 
-api_key='Enter your API key here'              # OpenWeatherMap API 키
+api_key='8645760044:AAFfjWh4UI25Y6D9ZYh1jM1z04NhTCSrdwQ'              # OpenWeatherMap API 키
 
 url= f"https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid={api_key}&units=metric&lang=en&cnt=8" # 서울 24시간 예보 URL
 
